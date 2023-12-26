@@ -12,13 +12,13 @@ sealed class BottomScreens(
 ) {
 
     object HomeScreen : BottomScreens(
-        route = "home_screen",
+        route = "home",
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home
     )
 
     object HistoricoScreen : BottomScreens(
-        route = "historico_screen",
+        route = "historico",
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home
     )

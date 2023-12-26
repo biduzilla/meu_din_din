@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.ricky.meudindin.domain.model.Despesa
 import kotlinx.coroutines.flow.Flow
@@ -26,6 +27,7 @@ interface DespesaDao {
     @Delete
     suspend fun deleteDespesa(despesa: Despesa)
 
+    @Transaction
     @Query("DELETE FROM DESPESA WHERE id = :idDespesa")
     suspend fun deleteDespesaById(idDespesa: Despesa)
 }

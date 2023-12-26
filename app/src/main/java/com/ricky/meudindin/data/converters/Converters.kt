@@ -3,6 +3,7 @@ package com.ricky.meudindin.data.converters
 import androidx.room.TypeConverter
 import com.ricky.meudindin.domain.enum.TipoDespesa
 import java.math.BigDecimal
+import java.time.LocalDate
 
 class Converters {
     @TypeConverter
@@ -23,5 +24,15 @@ class Converters {
     @TypeConverter
     fun toBigDecimal(value: String?): BigDecimal? {
         return value?.let { BigDecimal(it) }
+    }
+
+    @TypeConverter
+    fun fromDate(date: LocalDate?): Long? {
+        return date?.toEpochDay()
+    }
+
+    @TypeConverter
+    fun toDate(epochDay: Long?): LocalDate? {
+        return epochDay?.let { LocalDate.ofEpochDay(it) }
     }
 }

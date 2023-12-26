@@ -9,5 +9,5 @@ interface DespesaRepository {
     suspend fun insertDespesa(despesa: Despesa)
     suspend fun updateDespesa(despesa: Despesa)
     suspend fun deleteDespesa(despesa: Despesa)
-    suspend fun deleteDespesaById(idDespesa: Despesa)
+    suspend fun deleteDespesaById(idDespesa: Long)
 }

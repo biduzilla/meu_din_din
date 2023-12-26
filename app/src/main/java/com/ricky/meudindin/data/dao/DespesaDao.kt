@@ -29,5 +29,5 @@ interface DespesaDao {
 
     @Transaction
     @Query("DELETE FROM DESPESA WHERE id = :idDespesa")
-    suspend fun deleteDespesaById(idDespesa: Despesa)
+    suspend fun deleteDespesaById(idDespesa: Long)
 }

@@ -17,5 +17,5 @@ class DespesaRepositoryImpl @Inject constructor(private val dao: DespesaDao) : D
 
     override suspend fun insertDespesa(despesa: Despesa) = dao.insertDespesa(despesa)
 
-    override suspend fun deleteDespesaById(idDespesa: Despesa) = dao.deleteDespesaById(idDespesa)
+    override suspend fun deleteDespesaById(idDespesa: Long) = dao.deleteDespesaById(idDespesa)
 }

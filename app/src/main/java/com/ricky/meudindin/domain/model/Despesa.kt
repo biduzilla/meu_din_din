@@ -1,0 +1,17 @@
+package com.ricky.meudindin.domain.model
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.ricky.meudindin.domain.enum.TipoDespesa
+import java.math.BigDecimal
+import java.time.LocalDate
+
+@Entity
+data class Despesa(
+    @PrimaryKey
+    var id: Long = 0L,
+    var titulo: String = "",
+    var valor: BigDecimal = BigDecimal.ZERO,
+    var data: LocalDate = LocalDate.now(),
+    var tipo: TipoDespesa = TipoDespesa.OUTROS
+)

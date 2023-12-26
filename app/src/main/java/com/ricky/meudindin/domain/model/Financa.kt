@@ -7,7 +7,7 @@ import java.time.LocalDate
 
 @Entity
 data class Financa(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id:Long = 0L,
     var entrada:BigDecimal = BigDecimal.ZERO,
     var saida:BigDecimal = BigDecimal.ZERO,

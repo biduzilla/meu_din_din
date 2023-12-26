@@ -8,7 +8,7 @@ import java.time.LocalDate
 
 @Entity
 data class Despesa(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
     var titulo: String = "",
     var valor: BigDecimal = BigDecimal.ZERO,

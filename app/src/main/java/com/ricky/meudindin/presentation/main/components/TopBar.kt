@@ -29,7 +29,10 @@ fun TopBar(
         horizontalArrangement = Arrangement.End,
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(
+                vertical = 8.dp,
+                horizontal = 16.dp
+            )
     ) {
         Switch(checked = isDark,
             onCheckedChange = { onChangeTheme(it) },

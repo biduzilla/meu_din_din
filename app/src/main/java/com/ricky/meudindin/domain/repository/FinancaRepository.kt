@@ -18,6 +18,6 @@ interface FinancaRepository {
     suspend fun deleteFinanca(financa: Financa)
     suspend fun deleteFinancaById(idFinanca: Long)
     fun getTotal(): Flow<BigDecimal>
-    suspend fun sumEntradasByDate(startDate: Long, endDate: Long): BigDecimal
-    suspend fun sumSaidaByDate(startDate: Long, endDate: Long): BigDecimal
+    fun sumEntradasByDate(startDate: Long, endDate: Long): Flow<BigDecimal>
+    fun sumSaidaByDate(startDate: Long, endDate: Long): Flow<BigDecimal>
 }

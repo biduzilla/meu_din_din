@@ -13,9 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ricky.meudindin.R
 import com.ricky.meudindin.ui.theme.MeuDinDInTheme
 import java.math.BigDecimal
@@ -39,27 +41,35 @@ fun TopBarHome(
             Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
                 text = stringResource(id = R.string.total),
-                style = MaterialTheme.typography.titleSmall,
+                style = TextStyle(
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
+                ),
             )
             Text(
                 text = "R$ $total",
-                style = MaterialTheme.typography.titleLarge.copy(
+                style = TextStyle(
+                    fontSize = 32.sp,
                     fontWeight = FontWeight.Bold
                 ),
+                modifier = Modifier.padding(bottom = 16.dp)
             )
 
             Text(
                 text = stringResource(id = R.string.mes_ultimo),
-                style = MaterialTheme.typography.titleSmall,
+                style = TextStyle(
+                    fontSize = 18.sp,
+                ),
+                modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
             ) {
                 Surface(
                     shape = RoundedCornerShape(10.dp),
@@ -67,7 +77,10 @@ fun TopBarHome(
                 ) {
                     Text(
                         text = "+ R$ $entrada",
-                        style = MaterialTheme.typography.titleMedium.copy(color = Color.Green),
+                        style = TextStyle(
+                            fontSize = 22.sp,
+                            color = Color.Green
+                        ),
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
                     )
                 }
@@ -78,7 +91,10 @@ fun TopBarHome(
                 ) {
                     Text(
                         text = "- R$ $saida",
-                        style = MaterialTheme.typography.titleMedium.copy(color = Color.Red),
+                        style = TextStyle(
+                            fontSize = 22.sp,
+                            color = Color.Red
+                        ),
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
                     )
                 }

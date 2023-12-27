@@ -20,14 +20,14 @@ class FinancaRepositoryImpl @Inject constructor(private val dao: FinancaDao) : F
 
     override suspend fun deleteFinancaById(idFinanca: Long) = dao.deleteFinancaById(idFinanca)
     override fun getTotal(): Flow<BigDecimal> = dao.getTotal()
-    override suspend fun sumEntradasByDate(startDate: Long, endDate: Long): BigDecimal =
+    override fun sumEntradasByDate(startDate: Long, endDate: Long): Flow<BigDecimal> =
         dao.sumEntradasByDate(
             startDate = startDate,
             endDate = endDate
         )
 
-    override suspend fun sumSaidaByDate(startDate: Long, endDate: Long): BigDecimal =
-        sumSaidaByDate(
+    override fun sumSaidaByDate(startDate: Long, endDate: Long): Flow<BigDecimal> =
+        dao.sumSaidaByDate(
             startDate = startDate,
             endDate = endDate
         )

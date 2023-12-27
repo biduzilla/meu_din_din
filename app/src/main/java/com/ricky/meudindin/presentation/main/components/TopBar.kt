@@ -1,6 +1,8 @@
 package com.ricky.meudindin.presentation.main.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,8 +11,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,24 +28,36 @@ fun TopBar(
     isDark: Boolean,
     onChangeTheme: (Boolean) -> Unit
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.End,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(
-                vertical = 8.dp,
-                horizontal = 16.dp
-            )
-    ) {
-        Switch(checked = isDark,
-            onCheckedChange = { onChangeTheme(it) },
-            thumbContent = {
-                Icon(
-                    imageVector = if (isDark) Icons.Default.DarkMode else Icons.Default.LightMode,
-                    contentDescription = null
+    Surface(color = MaterialTheme.colorScheme.primary) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End,
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(
+                    vertical = 8.dp,
+                    horizontal = 16.dp
                 )
-            })
+        ) {
+            Switch(checked = isDark,
+                colors = SwitchDefaults.colors(
+                    checkedBorderColor = MaterialTheme.colorScheme.secondary,
+                    uncheckedBorderColor = MaterialTheme.colorScheme.secondary,
+                    checkedTrackColor = MaterialTheme.colorScheme.onSecondary,
+                    uncheckedTrackColor = MaterialTheme.colorScheme.onSecondary,
+                    checkedIconColor = MaterialTheme.colorScheme.secondary,
+                    uncheckedIconColor = MaterialTheme.colorScheme.secondary,
+                    checkedThumbColor = MaterialTheme.colorScheme.onSecondary,
+                    uncheckedThumbColor = MaterialTheme.colorScheme.onSecondary,
+                ),
+                onCheckedChange = { onChangeTheme(it) },
+                thumbContent = {
+                    Icon(
+                        imageVector = if (isDark) Icons.Default.DarkMode else Icons.Default.LightMode,
+                        contentDescription = null
+                    )
+                })
+        }
     }
 
 }

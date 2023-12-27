@@ -18,7 +18,7 @@ fun BottomNav(navController: NavHostController) {
             val viewModel = hiltViewModel<HomeViewModel>()
             val state by viewModel.state.collectAsState()
 
-            HomeScreen(state = state)
+            HomeScreen(state = state, onEvent = viewModel::onEvent)
         }
 
         composable(BottomScreens.HistoricoScreen.route) {

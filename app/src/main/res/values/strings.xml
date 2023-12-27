@@ -2,4 +2,12 @@
     <string name="app_name">Meu DinDin</string>
     <string name="mes_ultimo">Últimos 30 dias</string>
     <string name="total">Total</string>
+    <string name="entrada_saido">Entrada/Saída</string>
+    <string name="despesa">Despesa</string>
+    <string name="campo_obrigatorio">Campo Obrigatório!</string>
+    <string name="entrada">Entrada</string>
+    <string name="saida">Saída</string>
+    <string name="titulo">Título</string>
+    <string name="valor">Valor</string>
+    <string name="salvar">Salvar</string>
 </resources>

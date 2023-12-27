@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ricky.meudindin.domain.repository.FinancaRepository
+import com.ricky.meudindin.presentation.main.MainEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -69,6 +70,18 @@ class HomeViewModel @Inject constructor(private val financaRepository: FinancaRe
                 _state.update {
                     it.copy(
                         total = total ?: BigDecimal.ZERO
+                    )
+                }
+            }
+        }
+    }
+
+    fun onEvent(event: HomeEvent) {
+        when (event) {
+            is HomeEvent.IsShowDialog -> {
+                _state.update {
+                    it.copy(
+                        isShowDialog = event.isShow
                     )
                 }
             }

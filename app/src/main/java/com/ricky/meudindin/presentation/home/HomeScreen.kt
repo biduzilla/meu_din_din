@@ -14,7 +14,11 @@ import com.ricky.meudindin.presentation.home.components.TopBarHome
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(state: HomeState) {
+fun HomeScreen(
+    state: HomeState,
+    onEvent: (HomeEvent) -> Unit
+) {
+
     Scaffold(topBar = {
         TopBarHome(
             total = state.total,
@@ -22,7 +26,7 @@ fun HomeScreen(state: HomeState) {
             saida = state.saida
         )
     }, floatingActionButton = {
-        FloatingActionButton(onClick = { }) {
+        FloatingActionButton(onClick = { /*TODO*/ }) {
             Icon(imageVector = Icons.Default.Add, contentDescription = null)
         }
     }

@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">MeuDinDIn</string>
+    <string name="app_name">Meu DinDin</string>
+    <string name="mes_ultimo">Últimos 30 dias</string>
+    <string name="total">Total</string>
 </resources>

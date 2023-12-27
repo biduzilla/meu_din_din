@@ -33,7 +33,7 @@ interface FinancaDao {
     suspend fun deleteFinancaById(idFinanca: Long)
 
     @Query("SELECT SUM(entrada) - SUM(saida) AS total FROM FINANCA")
-    suspend fun calculeTotal(): BigDecimal
+    fun getTotal():Flow<BigDecimal>
 
     @Query("SELECT SUM(entrada) AS total FROM FINANCA WHERE data BETWEEN :startDate AND :endDate")
     suspend fun sumEntradasByDate(startDate: Long, endDate: Long): BigDecimal

@@ -178,7 +178,6 @@ class HomeViewModel @Inject constructor(
                         tipo = TipoDespesa.OUTROS,
                         titulo = "",
                         valor = "",
-                        form = 3,
                         isErrorValor = false,
                         isErrorTitulo = false
                     )

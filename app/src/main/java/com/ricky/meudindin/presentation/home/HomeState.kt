@@ -8,7 +8,7 @@ data class HomeState(
     var entrada: BigDecimal = BigDecimal.ZERO,
     var saida: BigDecimal = BigDecimal.ZERO,
     var valor: String = "",
-    var form: Int = 1,
+    var form: Int = 3,
     var titulo: String = "",
     var tipo: TipoDespesa = TipoDespesa.OUTROS,
     var isErrorTitulo: Boolean = false,

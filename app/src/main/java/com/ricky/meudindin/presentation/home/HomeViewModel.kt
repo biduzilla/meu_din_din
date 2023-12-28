@@ -2,6 +2,10 @@ package com.ricky.meudindin.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ricky.meudindin.domain.enums.TipoDespesa
+import com.ricky.meudindin.domain.model.Despesa
+import com.ricky.meudindin.domain.model.Financa
+import com.ricky.meudindin.domain.repository.DespesaRepository
 import com.ricky.meudindin.domain.repository.FinancaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +17,10 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val financaRepository: FinancaRepository) :
+class HomeViewModel @Inject constructor(
+    private val financaRepository: FinancaRepository,
+    private val despesaRepository: DespesaRepository
+) :
     ViewModel() {
     private val _state = MutableStateFlow(HomeState())
     val state = _state.asStateFlow()
@@ -111,7 +118,7 @@ class HomeViewModel @Inject constructor(private val financaRepository: FinancaRe
             }
 
             is HomeEvent.OnSave -> {
-                if (_state.value.titulo.isBlank() && _state.value.form == 3) {
+                if (_state.value.titulo.isBlank() && event.form == 3) {
                     _state.update {
                         it.copy(
                             isErrorTitulo = true
@@ -122,9 +129,59 @@ class HomeViewModel @Inject constructor(private val financaRepository: FinancaRe
                 if (_state.value.valor.count { it == '.' } > 1) {
                     _state.update {
                         it.copy(
-                            isErrorValor = false
+                            isErrorValor = true
                         )
                     }
+                    return
+                }
+                when (event.form) {
+                    1 -> {
+                        val financa = Financa(
+                            entrada = BigDecimal(_state.value.valor),
+                            saida = BigDecimal.ZERO,
+                            data = LocalDate.now(),
+                        )
+
+                        viewModelScope.launch {
+                            financaRepository.insertFinanca(financa)
+                        }
+                    }
+
+                    2 -> {
+                        val financa = Financa(
+                            entrada = BigDecimal.ZERO,
+                            saida = BigDecimal(_state.value.valor),
+                            data = LocalDate.now(),
+                            tipo = _state.value.tipo
+                        )
+
+                        viewModelScope.launch {
+                            financaRepository.insertFinanca(financa)
+                        }
+                    }
+
+                    3 -> {
+                        val despesa = Despesa(
+                            titulo = _state.value.titulo,
+                            valor = BigDecimal(_state.value.valor),
+                            tipo = _state.value.tipo,
+                        )
+
+                        viewModelScope.launch {
+                            despesaRepository.insertDespesa(despesa)
+                        }
+                    }
+                }
+                _state.update {
+                    it.copy(
+                        isShowDialog = false,
+                        tipo = TipoDespesa.OUTROS,
+                        titulo = "",
+                        valor = "",
+                        form = 3,
+                        isErrorValor = false,
+                        isErrorTitulo = false
+                    )
                 }
             }
         }

@@ -12,6 +12,5 @@ data class Despesa(
     var id: Long = 0L,
     var titulo: String = "",
     var valor: BigDecimal = BigDecimal.ZERO,
-    var data: LocalDate = LocalDate.now(),
     var tipo: TipoDespesa = TipoDespesa.OUTROS
 )

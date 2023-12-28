@@ -7,13 +7,13 @@ import java.time.LocalDate
 
 class Converters {
     @TypeConverter
-    fun fromTipoDespesa(tipoDespesa: TipoDespesa): String {
-        return tipoDespesa.value
+    fun fromTipoDespesa(tipoDespesa: TipoDespesa?): String? {
+        return tipoDespesa?.value
     }
 
     @TypeConverter
-    fun toTipoDespesa(value: String): TipoDespesa {
-        return enumValueOf(value)
+    fun toTipoDespesa(value: String?): TipoDespesa? {
+        return value?.let { TipoDespesa.valueOf(it) }
     }
 
     @TypeConverter

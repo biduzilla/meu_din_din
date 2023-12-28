@@ -10,4 +10,7 @@
     <string name="titulo">Título</string>
     <string name="valor">Valor</string>
     <string name="salvar">Salvar</string>
+    <string name="deseja_apagar">Deseja Apagar?</string>
+    <string name="apagar">Apagar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

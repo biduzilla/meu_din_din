@@ -194,8 +194,14 @@ class HomeViewModel @Inject constructor(
                         titulo = "",
                         valor = "",
                         isErrorValor = false,
-                        isErrorTitulo = false
+                        isErrorTitulo = false,
                     )
+                }
+            }
+
+            is HomeEvent.OnDelete -> {
+                viewModelScope.launch {
+                    despesaRepository.deleteDespesaById(event.id)
                 }
             }
         }

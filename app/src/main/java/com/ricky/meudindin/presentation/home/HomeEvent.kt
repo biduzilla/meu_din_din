@@ -8,4 +8,5 @@ sealed interface HomeEvent {
     data class OnChangeValor(val valor: String) : HomeEvent
     data class OnChangeTipo(val tipo: TipoDespesa) : HomeEvent
     data class OnSave(val form: Int) : HomeEvent
+    data class OnDelete(val id: Long) : HomeEvent
 }

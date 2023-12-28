@@ -8,7 +8,7 @@ import java.time.LocalDate
 class Converters {
     @TypeConverter
     fun fromTipoDespesa(tipoDespesa: TipoDespesa?): String? {
-        return tipoDespesa?.value
+        return tipoDespesa?.name
     }
 
     @TypeConverter

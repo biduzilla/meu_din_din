@@ -1,7 +1,9 @@
 package com.ricky.meudindin.presentation.home
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -10,6 +12,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.ricky.meudindin.presentation.home.components.CardDespesa
 import com.ricky.meudindin.presentation.home.components.DialogForm
 import com.ricky.meudindin.presentation.home.components.TopBarHome
 
@@ -23,7 +27,7 @@ fun HomeScreen(
     if (state.isShowDialog) {
         DialogForm(
             titulo = state.titulo,
-            valor = state.valor.toString(),
+            valor = state.valor,
             tipo = state.tipo.value,
             onChangeTitulo = { onEvent(HomeEvent.OnChangeTitulo(it)) },
             onChangeValor = { onEvent(HomeEvent.OnChangeValor(it)) },
@@ -47,6 +51,16 @@ fun HomeScreen(
         }
     }
     ) { paddingValues ->
-        LazyColumn(modifier = Modifier.padding(paddingValues)) {}
+        LazyColumn(
+            modifier = Modifier.padding(paddingValues),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(state.despesas) { despesa ->
+                CardDespesa(
+                    modifier = Modifier.padding(16.dp),
+                    despesa = despesa,
+                    onDelete = { onEvent(HomeEvent.OnDelete(despesa.id)) })
+            }
+        }
     }
 }

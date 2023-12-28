@@ -18,6 +18,7 @@ data class Despesa(
 
 fun Despesa.despesaToDto(): DespesaDto {
     return DespesaDto(
+        id = this.id,
         titulo = this.titulo,
         valor = this.valor,
         icon = this.tipo.icon

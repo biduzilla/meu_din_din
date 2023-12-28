@@ -1,11 +1,11 @@
 package com.ricky.meudindin.presentation.home
 
-import com.ricky.meudindin.domain.dto.DespesaDto
 import com.ricky.meudindin.domain.enums.TipoDespesa
+import com.ricky.meudindin.domain.model.Despesa
 import java.math.BigDecimal
 
 data class HomeState(
-    var despesas: List<DespesaDto> = emptyList(),
+    var despesas: List<Despesa> = emptyList(),
     var total: BigDecimal = BigDecimal.ZERO,
     var entrada: BigDecimal = BigDecimal.ZERO,
     var saida: BigDecimal = BigDecimal.ZERO,

@@ -10,6 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.ricky.meudindin.presentation.home.components.DialogForm
 import com.ricky.meudindin.presentation.home.components.TopBarHome
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -19,6 +20,21 @@ fun HomeScreen(
     onEvent: (HomeEvent) -> Unit
 ) {
 
+    if (state.isShowDialog) {
+        DialogForm(
+            titulo = state.titulo,
+            valor = state.valor.toString(),
+            tipo = state.tipo.value,
+            onChangeTitulo = { onEvent(HomeEvent.OnChangeTitulo(it)) },
+            onChangeValor = { onEvent(HomeEvent.OnChangeValor(it)) },
+            onChangeTipo = { onEvent(HomeEvent.OnChangeTipo(it)) },
+            onSave = { onEvent(HomeEvent.OnSave(it)) },
+            isErrorValor = state.isErrorValor,
+            isErrorTitulo = state.isErrorTitulo,
+            onDismiss = { onEvent(HomeEvent.IsShowDialog(false)) }
+        )
+    }
+
     Scaffold(topBar = {
         TopBarHome(
             total = state.total,
@@ -26,7 +42,7 @@ fun HomeScreen(
             saida = state.saida
         )
     }, floatingActionButton = {
-        FloatingActionButton(onClick = { /*TODO*/ }) {
+        FloatingActionButton(onClick = { onEvent(HomeEvent.IsShowDialog(true)) }) {
             Icon(imageVector = Icons.Default.Add, contentDescription = null)
         }
     }

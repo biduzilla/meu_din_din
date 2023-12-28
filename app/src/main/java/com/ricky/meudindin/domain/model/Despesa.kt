@@ -2,7 +2,7 @@ package com.ricky.meudindin.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ricky.meudindin.domain.enum.TipoDespesa
+import com.ricky.meudindin.domain.enums.TipoDespesa
 import java.math.BigDecimal
 import java.time.LocalDate
 

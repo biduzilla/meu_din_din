@@ -1,4 +1,4 @@
-package com.ricky.meudindin.presentation.main.components
+package com.ricky.meudindin.presentation.home.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.DropdownMenuItem
@@ -16,7 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.ricky.meudindin.domain.enum.TipoDespesa
+import com.ricky.meudindin.domain.enums.TipoDespesa
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,7 +24,7 @@ fun DropdownCompose(
     modifier: Modifier = Modifier,
     value: String,
     list: List<TipoDespesa>,
-    onChange: (String) -> Unit
+    onChange: (TipoDespesa) -> Unit
 ) {
 
     var expanded by remember { mutableStateOf(false) }
@@ -37,7 +37,7 @@ fun DropdownCompose(
         }
     ) {
         TextField(
-            value = label,
+            value = value,
             onValueChange = {},
             readOnly = true,
             colors = TextFieldDefaults.textFieldColors(
@@ -58,7 +58,7 @@ fun DropdownCompose(
                 DropdownMenuItem(
                     text = { Text(text = item.value) },
                     onClick = {
-                        onChange(item.value)
+                        onChange(item)
                         expanded = false
                     }
 

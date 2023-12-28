@@ -1,15 +1,11 @@
 package com.ricky.meudindin.presentation.home
 
-import android.icu.util.LocaleData
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ricky.meudindin.domain.repository.FinancaRepository
-import com.ricky.meudindin.presentation.main.MainEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
@@ -83,6 +79,52 @@ class HomeViewModel @Inject constructor(private val financaRepository: FinancaRe
                     it.copy(
                         isShowDialog = event.isShow
                     )
+                }
+            }
+
+            is HomeEvent.OnChangeTipo -> {
+                _state.update {
+                    it.copy(
+                        tipo = event.tipo
+                    )
+                }
+            }
+
+            is HomeEvent.OnChangeTitulo -> {
+                _state.update {
+                    it.copy(
+                        titulo = event.titulo,
+                        isErrorTitulo = false,
+                    )
+                }
+            }
+
+            is HomeEvent.OnChangeValor -> {
+                val valor = event.valor.replace(",", ".")
+
+                _state.update {
+                    it.copy(
+                        valor = valor,
+                        isErrorValor = false
+                    )
+                }
+            }
+
+            is HomeEvent.OnSave -> {
+                if (_state.value.titulo.isBlank() && _state.value.form == 3) {
+                    _state.update {
+                        it.copy(
+                            isErrorTitulo = true
+                        )
+                    }
+                    return
+                }
+                if (_state.value.valor.count { it == '.' } > 1) {
+                    _state.update {
+                        it.copy(
+                            isErrorValor = false
+                        )
+                    }
                 }
             }
         }

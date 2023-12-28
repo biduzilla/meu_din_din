@@ -65,6 +65,7 @@ fun TextFieldCompose(
                 colors = TextFieldDefaults.textFieldColors(
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
+                    containerColor = Color.Transparent,
                     textColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
                 keyboardOptions = KeyboardOptions(

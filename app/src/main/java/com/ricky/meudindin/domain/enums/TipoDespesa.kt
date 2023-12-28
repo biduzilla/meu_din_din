@@ -1,4 +1,4 @@
-package com.ricky.meudindin.domain.enum
+package com.ricky.meudindin.domain.enums
 
 enum class TipoDespesa(val value: String) {
     ALUGUEL("Aluguel"),

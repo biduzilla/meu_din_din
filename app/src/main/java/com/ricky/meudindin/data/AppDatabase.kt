@@ -14,7 +14,7 @@ import com.ricky.meudindin.domain.model.Financa
         Financa::class,
         Despesa::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

@@ -1,7 +1,7 @@
 package com.ricky.meudindin.data.converters
 
 import androidx.room.TypeConverter
-import com.ricky.meudindin.domain.enum.TipoDespesa
+import com.ricky.meudindin.domain.enums.TipoDespesa
 import java.math.BigDecimal
 import java.time.LocalDate
 

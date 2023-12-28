@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.ricky.meudindin.domain.enums.TipoDespesa
 import com.ricky.meudindin.domain.model.Despesa
 import com.ricky.meudindin.domain.model.Financa
+import com.ricky.meudindin.domain.model.despesaToDto
 import com.ricky.meudindin.domain.repository.DespesaRepository
 import com.ricky.meudindin.domain.repository.FinancaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
@@ -29,6 +31,19 @@ class HomeViewModel @Inject constructor(
         total()
         entradaMes()
         saidaMes()
+        recuperaDespesas()
+    }
+
+    private fun recuperaDespesas() {
+        viewModelScope.launch {
+            despesaRepository.getAllDespesas().collect { despesas ->
+                _state.update { currentState ->
+                    currentState.copy(
+                        despesas = despesas.map { it.despesaToDto() }
+                    )
+                }
+            }
+        }
     }
 
     private fun saidaMes() {

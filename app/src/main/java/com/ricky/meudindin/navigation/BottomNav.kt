@@ -8,6 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.ricky.meudindin.presentation.historico.HistoricoScreen
+import com.ricky.meudindin.presentation.historico.HistoricoViewModel
 import com.ricky.meudindin.presentation.home.HomeScreen
 import com.ricky.meudindin.presentation.home.HomeViewModel
 
@@ -22,7 +24,10 @@ fun BottomNav(navController: NavHostController) {
         }
 
         composable(BottomScreens.HistoricoScreen.route) {
+            val viewModel = hiltViewModel<HistoricoViewModel>()
+            val state by viewModel.state.collectAsState()
 
+            HistoricoScreen(state = state, onEvent = viewModel::onEvent)
         }
     }
 }

@@ -35,10 +35,16 @@ interface FinancaDao {
     @Query("SELECT SUM(entrada) - SUM(saida) AS total FROM FINANCA")
     fun getTotal(): Flow<BigDecimal>
 
-    @Query("SELECT SUM(entrada) AS total FROM FINANCA WHERE data BETWEEN :startDate AND :endDate")
+    @Query("SELECT SUM(entrada) AS total FROM FINANCA WHERE data BETWEEN :endDate AND :startDate")
     fun sumEntradasByDate(startDate: Long, endDate: Long): Flow<BigDecimal>
 
-    @Query("SELECT SUM(saida) AS total FROM FINANCA WHERE data BETWEEN :startDate AND :endDate")
+    @Query("SELECT SUM(entrada) AS total FROM FINANCA")
+    fun sumEntradas(): Flow<BigDecimal>
+
+    @Query("SELECT SUM(saida) AS total FROM FINANCA")
+    fun sumSaidas(): Flow<BigDecimal>
+
+    @Query("SELECT SUM(saida)  AS total FROM FINANCA WHERE data BETWEEN :endDate AND :startDate")
     fun sumSaidaByDate(startDate: Long, endDate: Long): Flow<BigDecimal>
 
     @Query("SELECT * FROM FINANCA WHERE data BETWEEN :endDate AND :startDate AND saida > 0 ORDER BY saida DESC")

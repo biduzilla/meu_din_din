@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ricky.meudindin.R
+import com.ricky.meudindin.presentation.main.components.RowEntradaSaida
 import com.ricky.meudindin.ui.theme.MeuDinDInTheme
 import java.math.BigDecimal
 
@@ -66,42 +67,11 @@ fun TopBarHome(
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Surface(
-                    shape = RoundedCornerShape(10.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer
-                ) {
-                    Text(
-                        text = "+ R$ $entrada",
-                        style = TextStyle(
-                            fontSize = 22.sp,
-                            color = Color.Green
-                        ),
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
-                    )
-                }
-
-                Surface(
-                    shape = RoundedCornerShape(10.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer
-                ) {
-                    Text(
-                        text = "- R$ $saida",
-                        style = TextStyle(
-                            fontSize = 22.sp,
-                            color = Color.Red
-                        ),
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
-                    )
-                }
-            }
+            RowEntradaSaida(entrada, saida)
         }
     }
 }
+
 
 @Preview
 @Composable

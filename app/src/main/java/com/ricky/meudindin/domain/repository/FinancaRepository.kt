@@ -1,11 +1,5 @@
 package com.ricky.meudindin.domain.repository
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
-import androidx.room.Update
 import com.ricky.meudindin.domain.model.Financa
 import kotlinx.coroutines.flow.Flow
 import java.math.BigDecimal
@@ -22,4 +16,6 @@ interface FinancaRepository {
     fun sumSaidaByDate(startDate: Long, endDate: Long): Flow<BigDecimal>
     fun getFinancaByDate(startDate: Long, endDate: Long): Flow<List<Financa>>
     fun getAllSaidaFinanca(): Flow<List<Financa>>
+    fun sumSaidas(): Flow<BigDecimal>
+    fun sumEntradas(): Flow<BigDecimal>
 }

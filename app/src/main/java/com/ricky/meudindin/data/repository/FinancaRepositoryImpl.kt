@@ -36,4 +36,6 @@ class FinancaRepositoryImpl @Inject constructor(private val dao: FinancaDao) : F
         dao.getFinancaByDate(startDate = startDate, endDate = endDate)
 
     override fun getAllSaidaFinanca(): Flow<List<Financa>> = dao.getAllSaidaFinanca()
+    override fun sumSaidas(): Flow<BigDecimal> = dao.sumSaidas()
+    override fun sumEntradas(): Flow<BigDecimal> = dao.sumEntradas()
 }

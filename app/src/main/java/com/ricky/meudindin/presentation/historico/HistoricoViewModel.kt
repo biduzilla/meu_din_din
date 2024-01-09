@@ -1,19 +1,18 @@
 package com.ricky.meudindin.presentation.historico
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ricky.meudindin.common.calculateDateAgo
 import com.ricky.meudindin.common.organizarPorTipo
+import com.ricky.meudindin.domain.model.Financa
 import com.ricky.meudindin.domain.repository.FinancaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
 import java.time.LocalDate
-import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,6 +24,19 @@ class HistoricoViewModel @Inject constructor(private val financaRepository: Fina
 
     init {
         recuperaFinancas()
+    }
+
+    private fun calculaSaidas(financas: List<Financa>) {
+        var saida: BigDecimal = BigDecimal.ZERO
+
+        for (financa in financas) {
+            saida = saida.plus(financa.saida)
+        }
+        _state.update {
+            it.copy(
+                saida = saida
+            )
+        }
     }
 
     private fun recuperaFinancas() {
@@ -55,9 +67,12 @@ class HistoricoViewModel @Inject constructor(private val financaRepository: Fina
 
                 "total" -> {
                     financaRepository.getAllSaidaFinanca().collect { financasRecuperadas ->
+
+                        calculaSaidas(financasRecuperadas)
+
                         _state.update {
                             it.copy(
-                                financas =  organizarPorTipo(financasRecuperadas)
+                                financas = organizarPorTipo(financasRecuperadas)
                             )
                         }
                     }
@@ -72,6 +87,9 @@ class HistoricoViewModel @Inject constructor(private val financaRepository: Fina
                 endDate = endDate
             ).collect { financasRecuperadas ->
                 val financas = organizarPorTipo(financasRecuperadas)
+
+                calculaSaidas(financas)
+
                 _state.update {
                     it.copy(
                         financas = financas

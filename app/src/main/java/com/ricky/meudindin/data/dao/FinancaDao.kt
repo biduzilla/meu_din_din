@@ -44,4 +44,7 @@ interface FinancaDao {
     @Query("SELECT * FROM FINANCA WHERE data BETWEEN :startDate AND :endDate AND saida > 0 ORDER BY saida DESC")
     fun getFinancaByDate(startDate: Long, endDate: Long): Flow<List<Financa>>
 
+    @Query("SELECT * FROM FINANCA WHERE saida > 0 ORDER BY saida DESC")
+    fun getAllSaidaFinanca(): Flow<List<Financa>>
+
 }

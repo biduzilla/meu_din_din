@@ -31,4 +31,7 @@ class FinancaRepositoryImpl @Inject constructor(private val dao: FinancaDao) : F
             startDate = startDate,
             endDate = endDate
         )
+
+    override fun getFinancaByDate(startDate: Long, endDate: Long): Flow<List<Financa>> =
+        dao.getFinancaByDate(startDate = startDate, endDate = endDate)
 }

@@ -105,4 +105,7 @@ dependencies {
 
     //AnimatedNavHost
     implementation ("com.google.accompanist:accompanist-navigation-animation:0.31.2-alpha")
+
+    //https://github.com/codeandtheory/YCharts - charts
+    implementation ("co.yml:ycharts:2.1.0")
 }

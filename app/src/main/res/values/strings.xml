@@ -13,4 +13,10 @@
     <string name="deseja_apagar">Deseja Apagar?</string>
     <string name="apagar">Apagar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="minhas_despesas">Minhas Despesas</string>
+    <string name="sete_dias">7 dias</string>
+    <string name="cartorze_dias">14 dias</string>
+    <string name="um_mes">1 mês</string>
+    <string name="seis_meses">6 mês</string>
+    <string name="um_ano">1 ano</string>
 </resources>

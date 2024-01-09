@@ -10,9 +10,15 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.ricky.meudindin.R
 import com.ricky.meudindin.presentation.home.components.CardDespesa
 import com.ricky.meudindin.presentation.home.components.DialogForm
 import com.ricky.meudindin.presentation.home.components.TopBarHome
@@ -55,6 +61,21 @@ fun HomeScreen(
             modifier = Modifier.padding(paddingValues),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            item {
+                Text(
+                    modifier = Modifier.padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        top = 16.dp,
+                        bottom = 8.dp
+                    ),
+                    text = stringResource(id = R.string.minhas_despesas),
+                    style = TextStyle(
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+            }
             items(state.despesas) { despesa ->
                 CardDespesa(
                     modifier = Modifier.padding(16.dp),

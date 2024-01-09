@@ -40,4 +40,7 @@ interface FinancaDao {
 
     @Query("SELECT SUM(saida) AS total FROM FINANCA WHERE data BETWEEN :startDate AND :endDate")
     fun sumSaidaByDate(startDate: Long, endDate: Long): Flow<BigDecimal>
+
+    @Query("SELECT * FROM FINANCA WHERE data BETWEEN :startDate AND :endDate")
+    fun getFinancaByDate(startDate: Long, endDate: Long): Flow<List<Financa>>
 }

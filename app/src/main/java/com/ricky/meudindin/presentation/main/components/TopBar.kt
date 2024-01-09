@@ -1,12 +1,9 @@
 package com.ricky.meudindin.presentation.main.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.LightMode
@@ -35,8 +32,8 @@ fun TopBar(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(
-                    vertical = 8.dp,
-                    horizontal = 16.dp
+                    end = 16.dp,
+                    top = 8.dp
                 )
         ) {
             Switch(checked = isDark,

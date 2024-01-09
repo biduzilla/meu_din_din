@@ -20,4 +20,5 @@ interface FinancaRepository {
     fun getTotal(): Flow<BigDecimal>
     fun sumEntradasByDate(startDate: Long, endDate: Long): Flow<BigDecimal>
     fun sumSaidaByDate(startDate: Long, endDate: Long): Flow<BigDecimal>
+    fun getFinancaByDate(startDate: Long, endDate: Long): Flow<List<Financa>>
 }

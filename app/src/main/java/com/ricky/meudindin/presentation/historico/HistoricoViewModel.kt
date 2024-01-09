@@ -67,15 +67,11 @@ class HistoricoViewModel @Inject constructor(private val financaRepository: Fina
                 else -> return@launch
             }
 
-//            Log.i("infoteste", "startDate: $startDate, endDate: $endDate")
-
             financaRepository.getFinancaByDate(
                 startDate = startDate,
                 endDate = endDate
             ).collect { financasRecuperadas ->
                 val financas = organizarPorTipo(financasRecuperadas)
-                Log.i("infoteste", "financa recuperado: $financasRecuperadas")
-                Log.i("infoteste", "financas : $financas")
                 _state.update {
                     it.copy(
                         financas = financas

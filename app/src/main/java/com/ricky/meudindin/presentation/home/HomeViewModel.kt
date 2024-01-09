@@ -45,8 +45,8 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun saidaMes() {
-        val startDate = LocalDate.now().minusDays(29).toEpochDay()
-        val endDate = LocalDate.now().toEpochDay()
+        val endDate = LocalDate.now().minusDays(29).toEpochDay()
+        val startDate = LocalDate.now().toEpochDay()
 
         viewModelScope.launch {
             financaRepository.sumSaidaByDate(
@@ -63,8 +63,8 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun entradaMes() {
-        val startDate = LocalDate.now().minusDays(29).toEpochDay()
-        val endDate = LocalDate.now().toEpochDay()
+        val endDate = LocalDate.now().minusDays(29).toEpochDay()
+        val startDate = LocalDate.now().toEpochDay()
 
         viewModelScope.launch {
             financaRepository.sumEntradasByDate(

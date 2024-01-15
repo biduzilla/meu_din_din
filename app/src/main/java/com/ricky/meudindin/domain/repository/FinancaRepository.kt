@@ -1,5 +1,6 @@
 package com.ricky.meudindin.domain.repository
 
+import com.ricky.meudindin.domain.dto.FinancaMesAno
 import com.ricky.meudindin.domain.model.Financa
 import kotlinx.coroutines.flow.Flow
 import java.math.BigDecimal
@@ -18,4 +19,5 @@ interface FinancaRepository {
     fun getAllSaidaFinanca(): Flow<List<Financa>>
     fun sumSaidas(): Flow<BigDecimal>
     fun sumEntradas(): Flow<BigDecimal>
+    fun getAllFinancasByMesAno():Flow<List<FinancaMesAno>>
 }

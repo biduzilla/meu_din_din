@@ -24,6 +24,19 @@ class HistoricoViewModel @Inject constructor(private val financaRepository: Fina
 
     init {
         recuperaFinancas()
+        recuperaHistoricoDespesas()
+    }
+
+    private fun recuperaHistoricoDespesas() {
+        viewModelScope.launch {
+            financaRepository.getAllFinancasByMesAno().collect{financas->
+                _state.update {
+                    it.copy(
+                        despesas = financas
+                    )
+                }
+            }
+        }
     }
 
     private fun calculaSaidas(financas: List<Financa>) {

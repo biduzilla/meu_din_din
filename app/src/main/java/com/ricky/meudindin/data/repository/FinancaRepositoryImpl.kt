@@ -1,9 +1,11 @@
 package com.ricky.meudindin.data.repository
 
 import com.ricky.meudindin.data.dao.FinancaDao
+import com.ricky.meudindin.domain.dto.FinancaMesAno
 import com.ricky.meudindin.domain.model.Financa
 import com.ricky.meudindin.domain.repository.FinancaRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import java.math.BigDecimal
 import javax.inject.Inject
 
@@ -38,4 +40,13 @@ class FinancaRepositoryImpl @Inject constructor(private val dao: FinancaDao) : F
     override fun getAllSaidaFinanca(): Flow<List<Financa>> = dao.getAllSaidaFinanca()
     override fun sumSaidas(): Flow<BigDecimal> = dao.sumSaidas()
     override fun sumEntradas(): Flow<BigDecimal> = dao.sumEntradas()
+    override fun getAllFinancasByMesAno(): Flow<List<FinancaMesAno>> {
+        return getAllSaidaFinanca().map { finacas ->
+            finacas.groupBy { financa ->
+                "${financa.data.monthValue}/${financa.data.year}-"
+            }.map { (anoMes, financaMesAno) ->
+                FinancaMesAno(financaMesAno, anoMes)
+            }
+        }
+    }
 }

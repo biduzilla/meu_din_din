@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ricky.meudindin.R
 import com.ricky.meudindin.presentation.historico.components.CardGasto
+import com.ricky.meudindin.presentation.historico.components.DespesaItem
 import com.ricky.meudindin.presentation.home.components.BtnText
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -125,6 +126,19 @@ fun HistoricoScreen(state: HistoricoState, onEvent: (HistoricoEvent) -> Unit) {
                     .padding(vertical = 16.dp),
                 thickness = 2.dp
             )
+        }
+        items(state.despesas) { item ->
+            Text(
+                text = item.mesAno,
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Divider()
+            Spacer(modifier = Modifier.height(8.dp))
+            item.despesas.forEach { financa ->
+                DespesaItem(financa = financa)
+            }
         }
     }
 }

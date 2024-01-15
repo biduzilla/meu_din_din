@@ -85,7 +85,7 @@ fun DespesaItem(
             }
             Text(
                 modifier = Modifier.padding(horizontal = 8.dp),
-                text = financa.saida.toString(),
+                text = "R${financa.saida}",
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontWeight = FontWeight.Bold
                 )

@@ -13,7 +13,7 @@ App para gestão de finanças pessoais simples.
 - Navigation
 - DataStore
 - Coroutines
-- 
+
 # Layout Mobile
 ### Home Page
 ![Mobile 1](img/1.png)

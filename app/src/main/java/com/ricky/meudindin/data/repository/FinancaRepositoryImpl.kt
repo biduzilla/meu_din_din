@@ -43,7 +43,7 @@ class FinancaRepositoryImpl @Inject constructor(private val dao: FinancaDao) : F
     override fun getAllFinancasByMesAno(): Flow<List<FinancaMesAno>> {
         return getAllSaidaFinanca().map { finacas ->
             finacas.groupBy { financa ->
-                "${financa.data.monthValue}/${financa.data.year}-"
+                "${financa.data.monthValue}/${financa.data.year}"
             }.map { (anoMes, financaMesAno) ->
                 FinancaMesAno(financaMesAno, anoMes)
             }

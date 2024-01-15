@@ -139,6 +139,7 @@ fun HistoricoScreen(state: HistoricoState, onEvent: (HistoricoEvent) -> Unit) {
             item.despesas.forEach { financa ->
                 DespesaItem(financa = financa)
             }
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }

@@ -16,8 +16,8 @@ App para gestão de finanças pessoais simples.
 - 
 # Layout Mobile
 ### Home Page
-![Mobile 1](imgs/1.png)
+![Mobile 1](img/1.png)
 
 ### Historico Page
-![Mobile 1](imgs/2.png)
-![Mobile 1](imgs/3.png)
+![Mobile 1](img/2.png)
+![Mobile 1](img/3.png)

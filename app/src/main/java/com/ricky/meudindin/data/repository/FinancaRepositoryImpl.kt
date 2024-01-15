@@ -1,5 +1,6 @@
 package com.ricky.meudindin.data.repository
 
+import androidx.compose.ui.text.toUpperCase
 import com.ricky.meudindin.data.dao.FinancaDao
 import com.ricky.meudindin.domain.dto.FinancaMesAno
 import com.ricky.meudindin.domain.model.Financa
@@ -7,6 +8,8 @@ import com.ricky.meudindin.domain.repository.FinancaRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.math.BigDecimal
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 import javax.inject.Inject
 
 class FinancaRepositoryImpl @Inject constructor(private val dao: FinancaDao) : FinancaRepository {
@@ -41,12 +44,21 @@ class FinancaRepositoryImpl @Inject constructor(private val dao: FinancaDao) : F
     override fun sumSaidas(): Flow<BigDecimal> = dao.sumSaidas()
     override fun sumEntradas(): Flow<BigDecimal> = dao.sumEntradas()
     override fun getAllFinancasByMesAno(): Flow<List<FinancaMesAno>> {
+        val dateFormatter = DateTimeFormatter.ofPattern("MMMM 'de' yyyy", Locale("pt", "BR"))
+
         return getAllSaidaFinanca().map { finacas ->
-            finacas.groupBy { financa ->
-                "${financa.data.monthValue}/${financa.data.year}"
-            }.map { (anoMes, financaMesAno) ->
-                FinancaMesAno(financaMesAno, anoMes)
-            }
+            finacas
+                .groupBy { financa ->
+                    financa.data.format(dateFormatter)
+                }
+                .map { (anoMes, financaMesAno) ->
+                    FinancaMesAno(
+                        financaMesAno.sortedByDescending { it.data.toEpochDay() },
+                        anoMes.uppercase()
+                    )
+                }
+
         }
     }
+
 }
